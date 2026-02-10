@@ -51,7 +51,6 @@ const Catalog: React.FC<CatalogProps> = ({ category }) => {
     fetchProducts();
   }, [supabase]);
 
-  // Función de normalización para evitar fallos de case-sensitivity en Vercel
   const normalize = (s: string | null | undefined) => (s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
   const sortedAndFilteredProducts = useMemo(() => {
@@ -60,8 +59,6 @@ const Catalog: React.FC<CatalogProps> = ({ category }) => {
       if (category === 'Favorites') return matchesSearch && favorites.includes(p.id);
       if (category === 'Catalog') return matchesSearch;
       if (category === 'Ofertas') return matchesSearch && (p.oldPrice !== null || p.category === 'Ofertas');
-      
-      // Comparamos normalizando (ignora acentos)
       return matchesSearch && normalize(p.category) === normalize(category);
     });
 
@@ -95,7 +92,7 @@ const Catalog: React.FC<CatalogProps> = ({ category }) => {
   }
 
   return (
-    <div className="space-y-12 animate-fadeIn pb-24">
+    <div className="space-y-12 animate-fadeIn pb-24 mt-8">
       <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-10">
         <h2 className="text-6xl md:text-8xl font-matita font-bold text-[#f6a118] drop-shadow-sm uppercase tracking-tighter">
           {category === 'Catalog' ? 'EXPLORAR' : normalize(category) === "regalaria" ? 'REGALERÍA GENERAL' : category.toUpperCase()}
