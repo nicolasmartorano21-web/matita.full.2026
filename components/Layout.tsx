@@ -58,8 +58,8 @@ const Layout: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col font-matita bg-[#fef9eb]/30">
       
-      {/* BANNER CON EFECTO KEN BURNS */}
-      <section className={`w-full relative overflow-hidden bg-white transition-all duration-1000 ease-in-out ${isScrolled ? 'h-0 opacity-0' : 'h-[40vh] md:h-[450px]'}`}>
+      {/* BANNER CON ALTURA FIJA PARA EVITAR EL BUG DE SALTO */}
+      <section className="w-full relative overflow-hidden bg-white h-[40vh] md:h-[450px]">
         {slides.map((slide, idx) => (
           <div 
             key={idx} 
@@ -91,7 +91,7 @@ const Layout: React.FC = () => {
         </div>
       </section>
 
-      {/* HEADER DINÁMICO */}
+      {/* HEADER DINÁMICO STICKY */}
       <header className={`sticky top-0 z-40 transition-all duration-500 bg-white/95 backdrop-blur-md border-b-2 border-[#fadb31]/30 shadow-sm ${isScrolled ? 'py-2' : 'py-5'}`}>
         <div className="container mx-auto px-6 flex items-center justify-between gap-8 max-w-[1920px]">
           
@@ -121,7 +121,7 @@ const Layout: React.FC = () => {
           <div className="flex items-center gap-4">
             <button 
               onClick={handleLogout} 
-              className="hidden sm:flex bg-gray-50 text-gray-400 px-6 py-2 rounded-full text-base font-bold hover:bg-red-50 hover:text-red-300 transition-all border border-transparent hover:border-red-100"
+              className="hidden sm:flex bg-gray-50 text-gray-400 px-6 py-2 rounded-full text-base font-bold hover:bg-red-50 hover:text-red-300 transition-all border border-transparent hover:border-red-100 uppercase"
             >
                SALIR 🚪
             </button>
@@ -160,7 +160,7 @@ const Layout: React.FC = () => {
          <Cart />
       </div>
 
-      {/* FOOTER - AHORA CON DEGRADADO NARANJA-ROSA SÓLIDO */}
+      {/* FOOTER - TODO DE COLOR COMO SE PIDIÓ */}
       <footer className="bg-gradient-to-br from-[#f6a118] to-[#ea7e9c] text-white pt-24 pb-0 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-2 bg-white/20 backdrop-blur-sm"></div>
         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-16 text-center md:text-left pb-12 relative z-10">
@@ -168,7 +168,7 @@ const Layout: React.FC = () => {
           <div className="space-y-6">
             <div className="flex items-center gap-3 justify-center md:justify-start">
                <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-2xl shadow-sm">📍</div>
-               <h4 className="text-2xl font-bold uppercase">Encontranos</h4>
+               <h4 className="text-2xl font-bold uppercase tracking-tighter">Encontranos</h4>
             </div>
             <p className="text-xl italic leading-relaxed text-white/90">
               Te esperamos en el corazón de **La Calera**, Córdoba.<br/>
@@ -179,22 +179,23 @@ const Layout: React.FC = () => {
           <div className="flex flex-col items-center justify-center space-y-4">
             <div 
               onClick={() => navigate('/admin')}
-              className="w-24 h-24 bg-white rounded-[2rem] flex items-center justify-center shadow-xl border-4 border-white/50 hover:border-white hover:scale-110 transition-all cursor-pointer group"
+              className="w-28 h-28 bg-white rounded-[2.5rem] flex items-center justify-center shadow-2xl border-4 border-white/50 hover:border-white hover:scale-110 transition-all cursor-pointer group"
             >
-              <span className="text-5xl group-hover:animate-bounce">✏️</span>
+              <span className="text-6xl group-hover:animate-bounce">✏️</span>
             </div>
-            <p className="font-logo text-4xl mt-4 uppercase tracking-wider text-white">"PAPELERÍA CON ALMA"</p>
+            <p className="font-logo text-5xl mt-4 uppercase tracking-wider text-white">MATITA</p>
+            <p className="text-xl font-bold opacity-80 uppercase tracking-widest text-white">"PAPELERÍA CON ALMA"</p>
           </div>
 
           <div className="space-y-6">
             <div className="flex items-center gap-3 justify-center md:justify-start">
                <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center text-2xl shadow-sm">✉️</div>
-               <h4 className="text-2xl font-bold uppercase">Seguinos</h4>
+               <h4 className="text-2xl font-bold uppercase tracking-tighter">Seguinos</h4>
             </div>
             <div className="flex gap-4 justify-center md:justify-start">
-               <a href="#" className="text-white hover:text-white/70 underline transition-colors text-xl font-bold">INSTAGRAM</a>
+               <a href="#" className="text-white hover:text-white/70 underline transition-colors text-xl font-bold uppercase">INSTAGRAM</a>
                <span className="text-white/40">•</span>
-               <a href="#" className="text-white hover:text-white/70 underline transition-colors text-xl font-bold">WHATSAPP</a>
+               <a href="#" className="text-white hover:text-white/70 underline transition-colors text-xl font-bold uppercase">WHATSAPP</a>
             </div>
             <p className="text-sm font-bold uppercase tracking-[0.2em] opacity-60">HECHO CON AMOR EN CBA 🇦🇷</p>
           </div>
@@ -207,7 +208,7 @@ const Layout: React.FC = () => {
         </div>
       </footer>
 
-      {/* MENÚ LATERAL MÓVIL */}
+      {/* MENÚ MÓVIL */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-[100] flex animate-fadeIn">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-md" onClick={() => setIsMenuOpen(false)}></div>
@@ -215,7 +216,7 @@ const Layout: React.FC = () => {
              <button onClick={() => setIsMenuOpen(false)} className="self-end text-6xl text-gray-200 hover:text-[#ea7e9c] transition-colors">×</button>
              <div className="flex flex-col gap-8">
                {navItems.map((item) => (
-                 <NavLink key={item.path} to={item.path} onClick={() => setIsMenuOpen(false)} className="text-3xl font-bold text-gray-600 hover:text-[#f6a118] transition-colors uppercase">
+                 <NavLink key={item.path} to={item.path} onClick={() => setIsMenuOpen(false)} className="text-3xl font-bold text-gray-600 hover:text-[#f6a118] transition-colors uppercase tracking-tighter">
                    {item.label}
                  </NavLink>
                ))}
