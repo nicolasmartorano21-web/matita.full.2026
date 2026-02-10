@@ -76,7 +76,7 @@ const LoginScreen: React.FC = () => {
             <img src={logoUrl} className="w-full h-full object-contain p-2" alt="Logo MATITA" />
           </div>
           <h1 className="text-6xl font-logo drop-shadow-sm uppercase tracking-wider">MATITA</h1>
-          <p className="text-xl italic opacity-90 uppercase tracking-widest">Papelería con mucho alma ✨</p>
+          <p className="text-xl italic opacity-90 uppercase tracking-widest">Librería con mucho alma ✨</p>
         </div>
 
         <div className="p-10 space-y-8 bg-white">
