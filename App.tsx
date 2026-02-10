@@ -182,7 +182,7 @@ const App: React.FC = () => {
               <Route index element={<Navigate to="/catalog" />} />
               <Route path="catalog" element={<Catalog category="Catalog" />} />
               <Route path="escolar" element={<Catalog category="Escolar" />} />
-              <Route path="regaleriageneral" element={<Catalog category="Regalaría" />} />
+              <Route path="otros" element={<Catalog category="Otros" />} />
               <Route path="oficina" element={<Catalog category="Oficina" />} />
               <Route path="tecnologia" element={<Catalog category="Tecnología" />} />
               <Route path="novedades" element={<Catalog category="Novedades" />} />
