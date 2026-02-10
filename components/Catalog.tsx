@@ -56,9 +56,15 @@ const Catalog: React.FC<CatalogProps> = ({ category }) => {
   const sortedAndFilteredProducts = useMemo(() => {
     let filtered = products.filter(p => {
       const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase());
+      
       if (category === 'Favorites') return matchesSearch && favorites.includes(p.id);
       if (category === 'Catalog') return matchesSearch;
-      if (category === 'Ofertas') return matchesSearch && (p.oldPrice !== null || p.category === 'Ofertas');
+      
+      if (category === 'Ofertas') {
+        const hasOfferPrice = p.oldPrice && p.oldPrice > 0;
+        return matchesSearch && (hasOfferPrice || p.category === 'Ofertas');
+      }
+      
       return matchesSearch && normalize(p.category) === normalize(category);
     });
 
@@ -75,9 +81,16 @@ const Catalog: React.FC<CatalogProps> = ({ category }) => {
     { label: 'OFICINA', cat: 'Oficina', icon: '💼', route: '/oficina' },
     { label: 'TECNOLOGÍA', cat: 'Tecnología', icon: '🎧', route: '/tecnologia' },
     { label: 'NOVEDADES', cat: 'Novedades', icon: '✨', route: '/novedades' },
-    { label: 'REGALERÍA GENERAL', cat: 'Regalaría', icon: '🛍️', route: '/regaleriageneral' },
+    { label: 'OTROS', cat: 'Otros', icon: '🎁', route: '/otros' },
     { label: 'OFERTAS', cat: 'Ofertas', icon: '🏷️', route: '/ofertas' }
   ];
+
+  const getSectionTitle = () => {
+    if (category === 'Catalog') return 'EXPLORAR';
+    if (category === 'Favorites') return 'FAVORITOS';
+    if (normalize(category) === "otros") return 'OTROS';
+    return category.toUpperCase();
+  };
 
   if (loading) {
     return (
@@ -95,7 +108,7 @@ const Catalog: React.FC<CatalogProps> = ({ category }) => {
     <div className="space-y-12 animate-fadeIn pb-24 mt-8">
       <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-10">
         <h2 className="text-6xl md:text-8xl font-matita font-bold text-[#f6a118] drop-shadow-sm uppercase tracking-tighter">
-          {category === 'Catalog' ? 'EXPLORAR' : normalize(category) === "regalaria" ? 'REGALERÍA GENERAL' : category.toUpperCase()}
+          {getSectionTitle()}
         </h2>
         <div className="flex flex-col md:flex-row gap-4 w-full max-w-4xl">
           <div className="relative flex-grow">
