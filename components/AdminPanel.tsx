@@ -368,7 +368,7 @@ const InventoryManager: React.FC = () => {
            <div className="space-y-1">
              <label className="text-sm font-bold text-gray-400 ml-4 uppercase tracking-widest">Categoría</label>
              <select className="w-full text-2xl p-4 rounded-2xl outline-none shadow-inner uppercase" value={editingProduct?.category} onChange={e => setEditingProduct({...editingProduct!, category: e.target.value as any})}>
-               {['Escolar', 'Regalaría', 'Oficina', 'Tecnología', 'Novedades', 'Ofertas'].map(c => <option key={c} value={c}>{c}</option>)}
+               {['Escolar', 'Otros', 'Oficina', 'Tecnología', 'Novedades', 'Ofertas'].map(c => <option key={c} value={c}>{c}</option>)}
              </select>
            </div>
         </div>
