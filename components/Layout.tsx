@@ -160,7 +160,7 @@ const Layout: React.FC = () => {
          <Cart />
       </div>
 
-      {/* FOOTER - TODO DE COLOR COMO SE PIDIÓ */}
+      {/* FOOTER */}
       <footer className="bg-gradient-to-br from-[#f6a118] to-[#ea7e9c] text-white pt-24 pb-0 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-2 bg-white/20 backdrop-blur-sm"></div>
         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-16 text-center md:text-left pb-12 relative z-10">
@@ -171,7 +171,7 @@ const Layout: React.FC = () => {
                <h4 className="text-2xl font-bold uppercase tracking-tighter">Encontranos</h4>
             </div>
             <p className="text-xl italic leading-relaxed text-white/90">
-              Te esperamos en el corazón de **La Calera**, Córdoba.<br/>
+              Te esperamos en **Altos de la Calera**, Córdoba.<br/>
               Un lugar donde los útiles cobran vida.
             </p>
           </div>
@@ -184,7 +184,7 @@ const Layout: React.FC = () => {
               <span className="text-6xl group-hover:animate-bounce">✏️</span>
             </div>
             <p className="font-logo text-5xl mt-4 uppercase tracking-wider text-white">MATITA</p>
-            <p className="text-xl font-bold opacity-80 uppercase tracking-widest text-white">"PAPELERÍA CON ALMA"</p>
+            <p className="text-xl font-bold opacity-80 uppercase tracking-widest text-white">"LIBRERÍA CON ALMA"</p>
           </div>
 
           <div className="space-y-6">
